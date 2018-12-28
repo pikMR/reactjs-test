@@ -19,7 +19,13 @@ module.exports = {
         presets: ['es2015','react'],
         plugins: ["jsx-control-statements"]
       }
-    }]
+    }],
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ]
   }
   // plugins: [
   //   new webpack.DefinePlugin({

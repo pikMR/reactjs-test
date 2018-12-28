@@ -10,6 +10,11 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import reducers from './reducers'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBook,faShare,faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faBook,faShare,faInfoCircle)
 
 const middleware = [ thunk ];
 if (process.env.NODE_ENV !== 'production') {

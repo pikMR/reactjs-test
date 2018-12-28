@@ -6,6 +6,7 @@ const NoteSchema = new Schema({
     intereses: { type: String, required: true },
     correo: { type: String, required: true },
     date: { type: Date, default: Date.now },
+    imagen: {type:String, required:true},
     user: { type:String }
 });
 

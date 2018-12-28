@@ -8,25 +8,56 @@ class MainContent extends React.Component{
 
   constructor(props){
     super(props)
+    this.state = {
+      articulos:[]
+    }
+  }
+
+  componentDidMount(){
+    this.getItems();
+  }
+
+  getItems(){
+    fetch('articulos',{method:'GET'}).then(results => results.json())
+    .then(data =>
+        this.setState({
+          articulos:
+            data.map((x) => ({
+              titulo: x.titulo,
+              descripcion: x.descripcion,
+              imagen: x.imagen,
+              pie1: x.pie1,
+              pie2: x.pie2
+            }))
+         })
+       )
+      .catch(err=>{console.log("--error--"+err)});
   }
 
   render(){
+    console.log("_>articulos:")
+    console.dir(this.state.articulos)
     return(
       <main className="twitter-panel">
       <Choose>
         <When condition={this.props.ruta ==='/visita'}>
           <div>
-            <h1>Quienes somos</h1>
+            <h1>Quienes somos?</h1>
+            <Articulo key="quienes_somos" descripcion={"En pocos días iniciaremos el año 2019 y con el nuevo año nos vienen a la cabeza nuevos propósitos para el próximo año. De una manera u otra siempre nos proponemos cambios: hacer deporte, cambiar de trabajo, estudiar idiomas, ser más positivo y quejarse menos, cambiar de casa o plantearse una nueva decoración para alguna zona de nuestro hogar."} />
           </div>
         </When>
         <When condition={this.props.ruta ==='/productos'}>
           <div className="tweet-container-header">
             Articulos
           </div>
-          <Articulo key="1" tweet={"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}/>
-          <Articulo key="2" tweet={"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}/>
-          <Articulo key="3" tweet={"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}/>
-          <Articulo key="4" tweet={"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."}/>
+          <For each="item" index='index' of={ this.state.articulos }>
+            <Articulo key={"articulo_"+index}
+            titulo={item.titulo}
+            descripcion={item.descripcion}
+            imagen={item.imagen}
+            pie1={item.pie1}
+            pie2={item.pie2} />
+          </For>
         </When>
       </Choose>
       </main>

@@ -1,17 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router';
+import Global from '../../helpers/constantes'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Articulo extends React.Component{
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
   }
-
   render(){
     return(
       <article  className="tweet detail">
-        <img className="tweet-avatar" src="public/resources/img/Bvro1LrCUAA6RZq.jpg" />
+        {/*<img className="tweet-avatar" src="public/resources/img/Bvro1LrCUAA6RZq.jpg" />*/}
         <div className="tweet-body">
+        {/*
           <div className="tweet-user">
             <Link to="/">
               <span  className="tweet-name" data-ignore-onclick>
@@ -22,15 +24,24 @@ class Articulo extends React.Component{
               TWITTER_USERNAR
             </span>
           </div>
-          <p className="tweet-message">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <img className="tweet-img" src="public/resources/img/Bvro1LrCUAA6RZq.jpg"/>
+          */
+        }
+          <h1>{this.props.titulo}</h1>
+          <p className="tweet-message">{this.props.descripcion}</p>
+          <If condition={ this.props.imagen != undefined }>
+            <img className="tweet-img" src={Global.FOLDER_UPLOAD + this.props.imagen}/>
+          </If>
           <div className="tweet-footer">
-            <a className='like-icon liked'>
-              <i className="fa fa-heart " aria-hidden="true" data-ignore-onclick></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            <If condition={ this.props.pie1 != undefined }>
+            <a className='like-icon liked' href='#'>
+              <FontAwesomeIcon icon="info-circle" /> {this.props.pie1}
             </a>
-              <a className="reply-icon">
-                <i className="fa fa-reply " aria-hidden="true" data-ignore-onclick></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo
+            </If>
+            <If condition={ this.props.pie2 != undefined }>
+              <a className="reply-icon" href='#'>
+                <FontAwesomeIcon icon="share" />{this.props.pie2}
               </a>
+            </If>
           </div>
         </div>
         <div id="tweet-detail-99"/>

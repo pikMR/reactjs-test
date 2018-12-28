@@ -8,6 +8,7 @@ var config = require('./webpack.config');
 var compiler = webpack(config);
 const mongoose = require('mongoose');
 const Note = require('./models/Note');
+const Articulo = require('./models/Articulo');
 //var configuration = require('./config')
 
 app.use('/public', express.static(__dirname + '/public'))
@@ -33,9 +34,24 @@ app.get('/notes',async (req, res) => {
         nombre: e.nombre,
         intereses: e.intereses,
         correo: e.correo,
-        date : e.date
+        date : e.date,
+        imagen: e.imagen
     }));
     res.send(colNotesMap);
+});
+
+app.get('/articulos',async (req, res) => {
+  console.log("entramos en articulos");
+    const collectionArticulos = await Articulo.find();
+    const colArticulosMap = collectionArticulos.map(e => ({
+        id: e._id,
+        titulo: e.titulo,
+        descripcion: e.descripcion,
+        imagen: e.imagen,
+        pie1: e.pie1,
+        pie2: e.pie2
+    }));
+    res.send(colArticulosMap);
 });
 
   app.get('/*', function (req, res) {
