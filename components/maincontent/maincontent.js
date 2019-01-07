@@ -82,4 +82,4 @@ const mapStateToProps = (state,ownProps) =>
   }
 }
 
-export default connect(mapStateToProps, { updatePageArticulos,updatePageNosotros })(MainContent);
+export default connect(mapStateToProps, { updatePageArticulos, updatePageNosotros })(MainContent);

@@ -703,6 +703,10 @@ input[type="file"]{
   position: relative;
 }
 
+#user-page .user-header .user-summary .user-summary-menu li .input-group{
+  padding-top:15px;
+}
+
 #user-page .user-header .user-summary .user-summary-menu li a::before{
   content: "";
   display: block;

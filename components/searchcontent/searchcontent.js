@@ -31,6 +31,7 @@ class SearchContent extends React.Component{
   }
 
   render(){
+    console.log("_searchContent")
     console.dir(this.state.articulos)
     return(
       <aside id="suggestedUsers" className="twitter-panel">

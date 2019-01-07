@@ -4,6 +4,9 @@ import FilterLink from './FilterLink'
 import { MainContent } from '../maincontent/maincontent'
 import { connect } from 'react-redux'
 import { updatePageNosotros,updatePageArticulos } from './../../app/actions/Actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import TextSearch from '../textsearch/TextSearch'
+
 class Header extends React.Component{
 
   constructor(props){
@@ -22,23 +25,26 @@ class Header extends React.Component{
               <div className="row">
                 <div className="hidden-xs col-sm-4 col-md-push-1 col-md-3 col-lg-push-1 col-lg-3">
                 </div>
-                <div className="col-xs-12 col-sm-8 col-md-push-1 col-md-7 col-lg-push-1 col-lg-7">
-                  <ul className="user-summary-menu">
-                    <li>
+                <div className="col-xs-12 col-sm-8 col-md-push-1 col-md-7 col-lg-push-1 col-lg-9">
+                  <ul className="user-summary-menu d-flex">
+                    <li className="p-2">
                     <FilterLink filter="productos" dispatch={this.props.updatePageArticulos}>
                     Productos
                     </FilterLink>
                     </li>
-                    <li>
+                    <li className="p-2">
                     <FilterLink filter="visita" dispatch={this.props.updatePageNosotros}>
                     Visita
                     </FilterLink>
                     </li>
-                    <li className="followers">
-                      <Link to="/">
-                        <p className="summary-label">Busqueda</p>
-                        <p className="summary-value">70</p>
-                      </Link>
+                    <li className="followers ml-auto p-2">
+                    <div className="input-group input-group-sm mb-3">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text" id="inputGroup-sizing-xs"><FontAwesomeIcon icon="search" /></span>
+                        </div>
+                        <TextSearch type="text" className="form-control" placeholder="Busca Algo">
+                        </TextSearch>
+                    </div>
                     </li>
                   </ul>
                 </div>

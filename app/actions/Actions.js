@@ -1,6 +1,7 @@
 import {
 PAGE_SOBRE_NOSOTROS,
-PAGE_ARTICULOS
+PAGE_ARTICULOS,
+PAGE_SEARCH_CONTENT
 } from './const'
 
 
@@ -14,6 +15,12 @@ export const updatePageArticulos = () => (dispatch,getState) =>{
   dispatch(actionUpdatePageArticulos())
 }
 
+export const updatePageSearchContent = () => (dispatch,getState) =>{
+    console.log("-> ACTIVA updatePageSearchContent")
+  dispatch(actionUpdatePageSearchContent())
+}
+
+
 // actions
 const actionUpdatePageNosotros = () => ({
   type: PAGE_SOBRE_NOSOTROS,
@@ -23,4 +30,9 @@ const actionUpdatePageNosotros = () => ({
 const actionUpdatePageArticulos = () => ({
   type: PAGE_ARTICULOS,
   ruta: '/productos'
+})
+
+const actionUpdatePageSearchContent = (busqueda) => ({
+  type: PAGE_SEARCH_CONTENT,
+  busqueda:  busqueda
 })
