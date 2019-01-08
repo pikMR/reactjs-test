@@ -15,11 +15,29 @@ export const updatePageArticulos = () => (dispatch,getState) =>{
   dispatch(actionUpdatePageArticulos())
 }
 
-export const updatePageSearchContent = () => (dispatch,getState) =>{
-    console.log("-> ACTIVA updatePageSearchContent")
-  dispatch(actionUpdatePageSearchContent())
-}
+//export const updatePageSearchContent = (customParams) => (dispatch,getState) =>{
+//    console.log("-> ACTIVA updatePageSearchContent")
+//  dispatch(actionUpdatePageSearchContent())
+//}
 
+export const updatePageSearchContent = (palabra) => (dispatch, getState) => {
+  console.log("-> ACTIVA updatePageSearchContent_palabra: " + palabra)
+  fetch('notes',{method:'GET'}).then(results => results.json())
+  .then(data =>
+      dispatch(
+        actionUpdatePageSearchContent(
+          data.map((x) => ({
+            nombre: x.nombre,
+            intereses: x.intereses,
+            imagen: x.imagen
+          })).filter(function (articulo) {
+              return articulo.nombre === palabra;
+              })
+        )
+      )
+    )
+    .catch(err=>{console.log("--error--"+err)});
+}
 
 // actions
 const actionUpdatePageNosotros = () => ({

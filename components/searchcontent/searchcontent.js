@@ -1,6 +1,9 @@
 import React from 'react'
 import Global from '../../helpers/constantes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { updatePageSearchContent } from './../../app/actions/Actions'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 class SearchContent extends React.Component{
 
@@ -13,6 +16,10 @@ class SearchContent extends React.Component{
 
   componentDidMount(){
     this.getItems();
+  }
+
+  componentWillMount(){
+    console.log(" -- componentWillMount --")
   }
 
   getItems(){
@@ -31,14 +38,12 @@ class SearchContent extends React.Component{
   }
 
   render(){
-    console.log("_searchContent")
-    console.dir(this.state.articulos)
     return(
       <aside id="suggestedUsers" className="twitter-panel">
         <span className="su-title">Destacados</span>
         <If condition={this.state.articulos}>
               <ul>
-              <For each="item" index='index' of={ this.state.articulos }>
+              <For each="item" index='index' of={ (this.props.busqueda!=null && this.props.busqueda.length > 0) ? this.props.busqueda : this.state.articulos }>
                 <li key={index+"_"+item.nombre}>{item.nombre}</li>
                 <div className="sg-item">
                   <div className="su-avatar">
@@ -53,7 +58,6 @@ class SearchContent extends React.Component{
                     </div>
                     <a href={"/"}
                       className="btn btn-primary btn-sm">
-
                       <FontAwesomeIcon icon="book" />
                           {' - '}Detalles</a>
                   </div>
@@ -64,6 +68,16 @@ class SearchContent extends React.Component{
       </aside>
     )
   }
-
 }
-export default SearchContent
+
+SearchContent.defaultProps = {
+  busqueda: null
+}
+const mapStateToProps = (state,ownProps) =>
+{
+  return {
+    busqueda: state.pageReducer.busqueda
+  }
+}
+
+export default connect(mapStateToProps, { updatePageSearchContent })(SearchContent);

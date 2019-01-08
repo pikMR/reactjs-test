@@ -3,6 +3,7 @@ import Articulo from './../articulo/articulo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { updatePageNosotros,updatePageArticulos } from './../../app/actions/Actions'
+import { browserHistory } from 'react-router'
 
 class MainContent extends React.Component{
 
@@ -35,8 +36,6 @@ class MainContent extends React.Component{
   }
 
   render(){
-    console.log("_>articulos:")
-    console.dir(this.state.articulos)
     return(
       <main className="twitter-panel">
       <Choose>
@@ -46,7 +45,7 @@ class MainContent extends React.Component{
             <Articulo key="quienes_somos" descripcion={"En pocos días iniciaremos el año 2019 y con el nuevo año nos vienen a la cabeza nuevos propósitos para el próximo año. De una manera u otra siempre nos proponemos cambios: hacer deporte, cambiar de trabajo, estudiar idiomas, ser más positivo y quejarse menos, cambiar de casa o plantearse una nueva decoración para alguna zona de nuestro hogar."} />
           </div>
         </When>
-        <When condition={this.props.ruta ==='/productos'}>
+        <Otherwise condition={this.props.ruta ==='/productos'}>
           <div className="tweet-container-header">
             Articulos
           </div>
@@ -58,7 +57,7 @@ class MainContent extends React.Component{
             pie1={item.pie1}
             pie2={item.pie2} />
           </For>
-        </When>
+        </Otherwise>
       </Choose>
       </main>
     )
@@ -70,13 +69,11 @@ MainContent.propTypes = {
 }
 
 MainContent.defaultProps = {
-  ruta: '/visita'
+  ruta: browserHistory.getCurrentLocation().pathname
 }
 
 const mapStateToProps = (state,ownProps) =>
 {
-  console.log("_update_state :")
-  console.dir(ownProps)
   return {
     ruta: state.pageReducer.ruta
   }
