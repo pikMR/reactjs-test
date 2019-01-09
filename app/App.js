@@ -13,8 +13,9 @@ import reducers from './reducers'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook,faShare,faInfoCircle,faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook,faTwitter,faYoutube } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faBook,faShare,faInfoCircle,faSearch)
+library.add(faBook,faShare,faInfoCircle,faSearch,faFacebook,faTwitter,faYoutube)
 
 const middleware = [ thunk ];
 if (process.env.NODE_ENV !== 'production') {

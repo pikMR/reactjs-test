@@ -11,21 +11,7 @@ class Articulo extends React.Component{
   render(){
     return(
       <article  className="tweet detail">
-        {/*<img className="tweet-avatar" src="public/resources/img/Bvro1LrCUAA6RZq.jpg" />*/}
         <div className="tweet-body">
-        {/*
-          <div className="tweet-user">
-            <Link to="/">
-              <span  className="tweet-name" data-ignore-onclick>
-                TWITTER_NAME
-              </span>
-            </Link>
-            <span className="tweet-username">
-              TWITTER_USERNAR
-            </span>
-          </div>
-          */
-        }
           <h1>{this.props.titulo}</h1>
           <p className="tweet-message">{this.props.descripcion}</p>
           <If condition={ this.props.imagen != undefined }>

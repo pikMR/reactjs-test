@@ -3,7 +3,7 @@ import { Link ,NavLink} from 'react-router'
 import FilterLink from './FilterLink'
 import { MainContent } from '../maincontent/maincontent'
 import { connect } from 'react-redux'
-import { updatePageNosotros,updatePageArticulos } from './../../app/actions/Actions'
+import { updatePageNosotros,updatePageArticulos,updatePageSearchContent } from './../../app/actions/Actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TextSearch from '../textsearch/TextSearch'
 
@@ -60,9 +60,11 @@ class Header extends React.Component{
                 </div>
               </aside>
             </div>
+            <If condition={this.props.busqueda && (this.props.busqueda.length>0)}>
             <div className="col-xs-12 col-sm-8 col-md-7 col-md-push-1 col-lg-7">
-              this.props.children
+              {'Te interesa la categoría '}<a href="#">{this.props.busqueda[0].intereses}</a>{"?"}
             </div>
+            </If>
           </div>
         </div>
       </div>
@@ -73,8 +75,9 @@ class Header extends React.Component{
 const mapStateToProps = (state) =>
 {
   return {
-    ruta: state.pageReducer.ruta
+    ruta: state.pageReducer.ruta,
+    busqueda: state.pageReducer.busqueda
   }
 }
 //export default Header
-export default connect(mapStateToProps, { updatePageArticulos,updatePageNosotros })(Header);
+export default connect(mapStateToProps, { updatePageArticulos,updatePageNosotros,updatePageSearchContent })(Header);

@@ -7,6 +7,17 @@ img {
   max-width: 250px;
 }
 
+.card {
+  font-size: 12px;
+}
+
+.card-map > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 14px;
+  text-align: center;
+}
+
 .tweet{
   padding: 10px;
   border-top: 1px solid #e6ecf0;
@@ -234,7 +245,7 @@ img {
 }
 
 #profile{
-  overflow: hidden;
+  overflow: visible;
 }
 
 #profile .profile-banner{
@@ -292,12 +303,13 @@ img {
   color: #1B95E0;
   font-size: 18px;
 }
-
+/*
 #profile .profile-name,
 #profile .profile-username{
   display: block;
   margin: 0px;
 }
+*/
 
 #profile .profile-username{
   color: #66757f;
@@ -582,7 +594,7 @@ input[type="file"]{
 }
 
 .app-container{
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 #user-page{

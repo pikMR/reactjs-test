@@ -53,8 +53,8 @@ class SearchContent extends React.Component{
                     <div>
                       <a href={"/"}>
                         <span className="sg-name">{item.nombre}</span>
-                        <span className="sg-username">{item.intereses}</span>
                       </a>
+                      <span className="sg-username">{item.intereses}</span>
                     </div>
                     <a href={"/"}
                       className="btn btn-primary btn-sm">
